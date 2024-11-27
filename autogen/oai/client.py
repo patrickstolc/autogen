@@ -1080,5 +1080,7 @@ class OpenAIWrapper:
             # Instantiate the rate limiter
             if "api_rate_limit" in config:
                 self._rate_limiters.append(TimeRateLimiter(config["api_rate_limit"]))
+                # following line breaks api rate limiting when adding tools
+                # del config["api_rate_limit"]
             else:
                 self._rate_limiters.append(None)
